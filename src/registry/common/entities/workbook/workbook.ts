@@ -4,7 +4,7 @@ import {AppError} from '@gravity-ui/nodekit';
 import {WorkbookConstructor, WorkbookInstance} from './types';
 import {Permissions, WorkbookPermission} from '../../../../entities/workbook/types';
 import {US_ERRORS} from '../../../../const';
-import {ZitadelUserRole} from '../../../../types/zitadel';
+import {ResourceUserRole} from '../../../../types/zitadel';
 
 export const Workbook: WorkbookConstructor<WorkbookInstance> = class Workbook
     implements WorkbookInstance
@@ -21,7 +21,7 @@ export const Workbook: WorkbookConstructor<WorkbookInstance> = class Workbook
     private getAllPermissions() {
         const {zitadelUserRole: role} = this.ctx.get('info');
 
-        const isEditorOrAdmin = role === ZitadelUserRole.Editor || role === ZitadelUserRole.Admin;
+        const isEditorOrAdmin = role === ResourceUserRole.Editor || role === ResourceUserRole.Admin;
 
         const permissions = {
             listAccessBindings: true,

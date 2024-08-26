@@ -1,5 +1,5 @@
 import {PrivatePermissions} from './models';
-import {ZitadelServiceUser, ZitadelUserRole} from './zitadel';
+import {ResourceServiceUser, ResourceUserRole} from './zitadel';
 
 export type UserCtxInfo = {
     userId: string;
@@ -17,6 +17,6 @@ export type CtxInfo = {
     onlyMirrored?: boolean;
     privatePermissions: PrivatePermissions;
     projectId: string | null;
-    serviceUser?: ZitadelServiceUser;
-    zitadelUserRole?: ZitadelUserRole;
+    serviceUser?: ResourceServiceUser;
+    zitadelUserRole?: ResourceUserRole;
 };

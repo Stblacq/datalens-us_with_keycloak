@@ -2,7 +2,7 @@ import {NextFunction, Request, Response} from '@gravity-ui/expresskit';
 import {introspect} from '../../utils/zitadel';
 import {IncomingHttpHeaders} from 'http';
 import {DL_AUTH_HEADER_KEY, DL_SERVICE_USER_ACCESS_TOKEN} from '../../const';
-import {ZitadelServiceUser} from '../../types/zitadel';
+import {ResourceServiceUser} from '../../types/zitadel';
 
 export const authZitadel = async (req: Request, res: Response, next: NextFunction) => {
     const {ctx} = req;
@@ -21,7 +21,7 @@ export const authZitadel = async (req: Request, res: Response, next: NextFunctio
         if (
             r1.active &&
             r2.active &&
-            (r2.username === ZitadelServiceUser.charts || r2.username === ZitadelServiceUser.bi)
+            (r2.username === ResourceServiceUser.charts || r2.username === ResourceServiceUser.bi)
         ) {
             res.locals.userId = r1.userId;
             res.locals.login = r1.username;

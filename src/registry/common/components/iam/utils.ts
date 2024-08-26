@@ -2,7 +2,7 @@ import {AppContext, AppError} from '@gravity-ui/nodekit';
 import type {CheckOrganizationPermission, CheckProjectPermission} from './types';
 import {OrganizationPermission, ProjectPermission} from '../../../../components/iam';
 import {US_ERRORS} from '../../../../const';
-import {ZitadelUserRole} from '../../../../types/zitadel';
+import {ResourceUserRole} from '../../../../types/zitadel';
 
 const throwAccessServicePermissionDenied = () => {
     throw new AppError(US_ERRORS.ACCESS_SERVICE_PERMISSION_DENIED, {
@@ -22,14 +22,14 @@ export const checkOrganizationPermission: CheckOrganizationPermission = async (a
             break;
 
         case OrganizationPermission.ManageInstance:
-            if (role !== ZitadelUserRole.Admin) {
+            if (role !== ResourceUserRole.Admin) {
                 throwAccessServicePermissionDenied();
             }
             break;
 
         case OrganizationPermission.CreateCollectionInRoot:
         case OrganizationPermission.CreateWorkbookInRoot:
-            if (role !== ZitadelUserRole.Editor && role !== ZitadelUserRole.Admin) {
+            if (role !== ResourceUserRole.Editor && role !== ResourceUserRole.Admin) {
                 throwAccessServicePermissionDenied();
             }
             break;
@@ -50,7 +50,7 @@ export const checkProjectPermission: CheckProjectPermission = async (args: {
     switch (permission) {
         case ProjectPermission.CreateCollectionInRoot:
         case ProjectPermission.CreateWorkbookInRoot:
-            if (role !== ZitadelUserRole.Editor && role !== ZitadelUserRole.Admin) {
+            if (role !== ResourceUserRole.Editor && role !== ResourceUserRole.Admin) {
                 throwAccessServicePermissionDenied();
             }
             break;

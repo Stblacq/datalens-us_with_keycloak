@@ -2,7 +2,7 @@ import request from 'supertest';
 import usApp from '../../../..';
 import {auth} from '../../utils';
 import {ZITADEL_USER_ROLE_HEADER} from '../../constants';
-import {ZitadelUserRole} from '../../../../types/zitadel';
+import {ResourceUserRole} from '../../../../types/zitadel';
 
 const app = usApp.express;
 
@@ -45,7 +45,7 @@ describe('Copy entries', () => {
             .expect(403);
 
         const {body: entry1Body} = await auth(request(app).post('/v1/entries'))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 scope: 'dataset',
                 type: 'graph',
@@ -57,7 +57,7 @@ describe('Copy entries', () => {
             .expect(200);
 
         const {body: entry2Body} = await auth(request(app).post('/v1/entries'))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 scope: 'dataset',
                 type: 'graph',
@@ -81,7 +81,7 @@ describe('Copy entries', () => {
             .expect(403);
 
         const {body} = await auth(request(app).post('/v2/copy-entries'))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 entryIds: [workbookId1EntryId1, workbookId1EntryId2],
                 workbookId: workbookId2,
@@ -114,7 +114,7 @@ describe('Copy entries', () => {
 
         await auth(request(app).post('/v2/copy-entries'))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .send({
                 entryIds: [workbookId1EntryId1, workbookId1EntryId2],
@@ -154,7 +154,7 @@ describe('Copy entries', () => {
             body: {entryId: workbookId1EntryId3},
         } = await auth(request(app).post('/v1/entries'))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .send({
                 scope: 'dataset',
@@ -168,7 +168,7 @@ describe('Copy entries', () => {
 
         await auth(request(app).post('/v2/copy-entries'))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .send({
                 entryIds: [workbookId1EntryId3],
@@ -199,12 +199,12 @@ describe('Copy entries', () => {
 
         await auth(request(app).delete(`/v2/workbooks/${workbookId1}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
         await auth(request(app).delete(`/v2/workbooks/${workbookId2}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
     });

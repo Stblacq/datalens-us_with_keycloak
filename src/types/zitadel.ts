@@ -1,9 +1,9 @@
-export enum ZitadelServiceUser {
+export enum ResourceServiceUser {
     charts = 'charts',
     bi = 'bi',
 }
 
-export enum ZitadelUserRole {
+export enum ResourceUserRole {
     Editor = 'datalens.editor',
     Admin = 'datalens.admin',
     Viewer = 'datalens.viewer',

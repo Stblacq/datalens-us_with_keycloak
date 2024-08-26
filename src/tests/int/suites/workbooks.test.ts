@@ -3,7 +3,7 @@ import {systemId, testTenantId, testProjectId, ZITADEL_USER_ROLE_HEADER} from '.
 import {US_MASTER_TOKEN_HEADER} from '../../../const';
 import usApp from '../../..';
 import {auth} from '../utils';
-import {ZitadelUserRole} from '../../../types/zitadel';
+import {ResourceUserRole} from '../../../types/zitadel';
 
 const app = usApp.express;
 const masterToken = usApp.config.masterToken[0];
@@ -105,7 +105,7 @@ describe('Workbooks managment', () => {
         });
 
         const response1 = await auth(request(app).get(`/v2/workbooks/${workbooksData[0].id}`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
 
         expect(response1.body).toStrictEqual({
@@ -160,7 +160,7 @@ describe('Workbooks managment', () => {
         });
 
         const response2 = await auth(request(app).get(`/v2/workbooks`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
 
         expect(response2.body).toStrictEqual({
@@ -268,7 +268,7 @@ describe('Workbooks managment', () => {
         const response = await auth(
             request(app).post(`/v2/workbooks/${workbooksData[0].id}/update`),
         )
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 title: workbooksData[0].title,
                 description: workbooksData[0].description,
@@ -294,10 +294,10 @@ describe('Workbooks managment', () => {
 
     test('Delete workbooks – [DELETE /v2/workbooks/:workbookId]', async () => {
         await auth(request(app).delete(`/v2/workbooks/${workbooksData[0].id}`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
         await auth(request(app).delete(`/v2/workbooks/${workbooksData[1].id}`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
 
         await auth(request(app).get(`/v2/workbooks/${workbooksData[0].id}`)).expect(404);
@@ -347,7 +347,7 @@ describe('Entries in workboooks managment', () => {
         testWorkbookId = bodyWorkbook.workbookId;
 
         const responseEntry1 = await auth(request(app).post('/v1/entries'))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 scope: 'dataset',
                 type: 'graph',
@@ -384,7 +384,7 @@ describe('Entries in workboooks managment', () => {
         });
 
         const responseEntry2 = await auth(request(app).post('/v1/entries'))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 scope: 'dataset',
                 type: 'graph',
@@ -480,7 +480,7 @@ describe('Entries in workboooks managment', () => {
             .expect(403);
 
         const response = await auth(request(app).post(`/v2/workbooks/${testWorkbookId}/copy`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .send({
                 newTitle: testNewTitle,
             })
@@ -561,10 +561,10 @@ describe('Entries in workboooks managment', () => {
         await auth(request(app).delete(`/v2/workbooks/${testCopiedWorkbookId}`)).expect(403);
 
         await auth(request(app).delete(`/v2/workbooks/${testWorkbookId}`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
         await auth(request(app).delete(`/v2/workbooks/${testCopiedWorkbookId}`))
-            .set({[ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor})
+            .set({[ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor})
             .expect(200);
 
         await auth(request(app).get(`/v2/workbooks/${testWorkbookId}`)).expect(404);

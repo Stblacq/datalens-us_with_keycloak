@@ -1,3 +1,3 @@
-import {ZitadelUserRole} from '../../types/zitadel';
+import {ResourceUserRole} from '../../types/zitadel';
 
-export type GetZitadelUserRole = (data: any) => ZitadelUserRole;
+export type GetZitadelUserRole = (data: any) => ResourceUserRole;
