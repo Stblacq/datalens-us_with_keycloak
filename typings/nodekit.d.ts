@@ -14,7 +14,7 @@ export interface SharedAppConfig {
 
     masterToken: string[];
 
-    zitadelEnabled?: boolean;
+    authType?: string;
     zitadelUri?: string;
     clientId?: string;
     clientSecret?: string;

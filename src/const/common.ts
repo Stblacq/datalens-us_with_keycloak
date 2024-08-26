@@ -184,6 +184,12 @@ export enum BiTrackingLogs {
     DeleteEntry = 'DELETE_ENTRY_SUCCESS',
 }
 
+export enum AuthType {
+    Zitadel = 'zitadel',
+    Keycloak = 'keycloak',
+    None = 'none',
+}
+
 export const DEFAULT_QUERY_TIMEOUT = 20000;
 export const EXTENDED_QUERY_TIMEOUT = 40000;
 
