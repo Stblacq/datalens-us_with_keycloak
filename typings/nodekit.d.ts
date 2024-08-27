@@ -18,6 +18,13 @@ export interface SharedAppConfig {
     zitadelUri?: string;
     clientId?: string;
     clientSecret?: string;
+
+    keycloakClientId?: string,
+    keycloakSecretKey?: string,
+    keycloakUri?: string,
+    keycloakRealmName?: string,
+    keycloakCookieSecret?: string,
+
 }
 declare module '@gravity-ui/nodekit' {
     export interface AppConfig extends SharedAppConfig {}

@@ -1,6 +1,8 @@
 export enum ResourceServiceUser {
     charts = 'charts',
     bi = 'bi',
+    keycloakCharts = 'service-account-charts',
+    keycloakBi = 'service-account-bi',
 }
 
 export enum ResourceUserRole {
