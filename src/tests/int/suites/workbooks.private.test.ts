@@ -3,7 +3,7 @@ import {systemId, testTenantId, testProjectId, ZITADEL_USER_ROLE_HEADER} from '.
 import {US_MASTER_TOKEN_HEADER} from '../../../const';
 import usApp from '../../..';
 import {auth} from '../utils';
-import {ZitadelUserRole} from '../../../types/zitadel';
+import {ResourceUserRole} from '../../../types/zitadel';
 
 const app = usApp.express;
 const masterToken = usApp.config.masterToken[0];
@@ -72,7 +72,7 @@ describe('Private Workbooks managment', () => {
 
         await auth(request(app).delete(`/v2/workbooks/${workbooksData.id}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
     });
@@ -110,7 +110,7 @@ describe('Private Entries in workboooks managment', () => {
 
         await auth(request(app).post('/v1/entries'))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .send({
                 scope: 'dataset',
@@ -161,7 +161,7 @@ describe('Private Entries in workboooks managment', () => {
 
         await auth(request(app).delete(`/v2/workbooks/${testWorkbookId}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
     });
@@ -199,7 +199,7 @@ describe('Private for one workboook managment', () => {
 
         await auth(request(app).post('/v1/entries'))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .send({
                 scope: 'dataset',
@@ -215,7 +215,7 @@ describe('Private for one workboook managment', () => {
     test('Restore workbook with entries – [POST /private/v2/workbooks/:workbookId/restore]', async () => {
         await auth(request(app).delete(`/v2/workbooks/${testWorkbookId}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
 
@@ -268,7 +268,7 @@ describe('Private for one workboook managment', () => {
 
         await auth(request(app).delete(`/v2/workbooks/${testWorkbookId}`))
             .set({
-                [ZITADEL_USER_ROLE_HEADER]: ZitadelUserRole.Editor,
+                [ZITADEL_USER_ROLE_HEADER]: ResourceUserRole.Editor,
             })
             .expect(200);
     });

@@ -1,10 +1,10 @@
 import {NextFunction, Request, Response} from '@gravity-ui/expresskit';
-import {introspect} from '../../utils/zitadel';
+import {introspect} from '../../utils/keycloak';
 import {IncomingHttpHeaders} from 'http';
 import {DL_AUTH_HEADER_KEY, DL_SERVICE_USER_ACCESS_TOKEN} from '../../const';
 import {ResourceServiceUser} from '../../types/zitadel';
 
-export const authZitadel = async (req: Request, res: Response, next: NextFunction) => {
+export const authKeycloak = async (req: Request, res: Response, next: NextFunction) => {
     const {ctx} = req;
 
     const authToken = extractAuthTokenFromHeader(req.headers);
@@ -21,7 +21,7 @@ export const authZitadel = async (req: Request, res: Response, next: NextFunctio
         if (
             r1.active &&
             r2.active &&
-            (r2.username === ResourceServiceUser.charts || r2.username === ResourceServiceUser.bi)
+            (r2.username === ResourceServiceUser.keycloakCharts || r2.username === ResourceServiceUser.keycloakBi)
         ) {
             res.locals.userId = r1.userId;
             res.locals.login = r1.username;

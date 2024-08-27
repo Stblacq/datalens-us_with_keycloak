@@ -1,22 +1,22 @@
-import {ZitadelUserRole} from '../../types/zitadel';
+import {ResourceUserRole} from '../../types/zitadel';
 import {GetZitadelUserRole} from './types';
 
-export const getZitadelUserRole: GetZitadelUserRole = (data: any): ZitadelUserRole => {
+export const getZitadelUserRole: GetZitadelUserRole = (data: any): ResourceUserRole => {
     const scope = 'urn:zitadel:iam:org:project:roles';
 
     const roles = data[scope];
 
     if (!roles) {
-        return ZitadelUserRole.Viewer;
+        return ResourceUserRole.Viewer;
     }
 
-    if (roles[ZitadelUserRole.Admin]) {
-        return ZitadelUserRole.Admin;
+    if (roles[ResourceUserRole.Admin]) {
+        return ResourceUserRole.Admin;
     }
 
-    if (roles[ZitadelUserRole.Editor]) {
-        return ZitadelUserRole.Editor;
+    if (roles[ResourceUserRole.Editor]) {
+        return ResourceUserRole.Editor;
     }
 
-    return ZitadelUserRole.Viewer;
+    return ResourceUserRole.Viewer;
 };

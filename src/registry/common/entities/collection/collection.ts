@@ -4,7 +4,7 @@ import {AppError} from '@gravity-ui/nodekit';
 import {CollectionConstructor, CollectionInstance} from './types';
 import {CollectionPermission, Permissions} from '../../../../entities/collection/types';
 import {US_ERRORS} from '../../../../const';
-import {ZitadelUserRole} from '../../../../types/zitadel';
+import {ResourceUserRole} from '../../../../types/zitadel';
 
 export const Collection: CollectionConstructor = class Collection implements CollectionInstance {
     ctx: AppContext;
@@ -19,7 +19,7 @@ export const Collection: CollectionConstructor = class Collection implements Col
     private getAllPermissions() {
         const {zitadelUserRole: role} = this.ctx.get('info');
 
-        const isEditorOrAdmin = role === ZitadelUserRole.Editor || role === ZitadelUserRole.Admin;
+        const isEditorOrAdmin = role === ResourceUserRole.Editor || role === ResourceUserRole.Admin;
 
         const permissions = {
             listAccessBindings: true,

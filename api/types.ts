@@ -23,4 +23,4 @@ export {
 export * as ST from '../src/types/services.types';
 
 export {InterTenantGetEntriesArgs} from '../src/db/models/navigation/utils';
-export {ZitadelUserRole} from '../src/types/zitadel';
+export {ResourceUserRole} from '../src/types/zitadel';

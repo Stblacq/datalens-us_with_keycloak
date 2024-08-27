@@ -13,8 +13,9 @@ import {
     checkReadOnlyMode,
     resolveWorkbookId,
     authZitadel,
+    authKeycloak
 } from './components/middlewares';
-import {AppEnv} from './const';
+import {AppEnv, AuthType} from './const';
 import {registry} from './registry';
 import {getRoutes} from './routes';
 
@@ -46,8 +47,10 @@ afterAuth.push(
     checkReadOnlyMode,
 );
 
-if (nodekit.config.zitadelEnabled) {
+if (nodekit.config.authType==AuthType.Zitadel) {
     nodekit.config.appAuthHandler = authZitadel;
+} else if (nodekit.config.authType==AuthType.Keycloak) {
+    nodekit.config.appAuthHandler = authKeycloak;
 }
 
 nodekit.config.appFinalErrorHandler = finalRequestHandler;

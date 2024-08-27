@@ -2,14 +2,14 @@ import {AppContext} from '@gravity-ui/nodekit';
 import {Utils} from './utils';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import {ZitadelUserRole} from '../types/zitadel';
+import {ResourceUserRole} from '../types/zitadel';
 import {registry} from '../registry';
 
 type IntrospectionResult = {
     active: boolean;
     userId?: string;
     username?: string;
-    role?: ZitadelUserRole;
+    role?: ResourceUserRole;
 };
 
 const axiosInstance = axios.create();
