@@ -185,9 +185,9 @@ export enum BiTrackingLogs {
 }
 
 export enum AuthType {
-    Zitadel = 'zitadel',
-    Keycloak = 'keycloak',
-    None = 'none',
+    Zitadel = 'ZITADEL',
+    Keycloak = 'KEYCLOAK',
+    None = 'NONE',
 }
 
 export const DEFAULT_QUERY_TIMEOUT = 20000;
