@@ -34,7 +34,6 @@ export default {
     keycloakSecretKey: Utils.getEnvVariable('KEYCLOAK_SECRET_KEY') || '',
     keycloakUri: Utils.getEnvVariable('KEYCLOAK_URI') || '',
     keycloakRealmName: Utils.getEnvVariable('KEYCLOAK_REALM_NAME') || '',
-    keycloakCookieSecret: Utils.getEnvVariable('KEYCLOAK_COOKIE_SECRET') || '',
 
     appSensitiveKeys: [US_MASTER_TOKEN_HEADER],
 
